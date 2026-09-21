@@ -1,9 +1,10 @@
 package homwork9;
+
 public class main5 {
 
     public static void main(String[] args) {
 
-        MyHashMap map = new MyHashMap();
+        MyHashMap<String, Object> map = new MyHashMap<>();
 
         map.put("name", "Oleksandr");
         map.put("age", 19);
@@ -33,4 +34,6 @@ public class main5 {
         System.out.println("Size after clear: " + map.size());
     }
 }
+
+
 

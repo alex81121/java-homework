@@ -1,13 +1,14 @@
 package homwork9;
+
 public class main1 {
 
     public static void main(String[] args) {
 
-        MyArrayList list = new MyArrayList();
+        MyArrayList<String> list = new MyArrayList<>();
 
         list.add("Hello");
         list.add("World");
-        list.add(123);
+        list.add("Test");
 
         System.out.println(list.get(0));
         System.out.println(list.get(1));
@@ -26,3 +27,4 @@ public class main1 {
         System.out.println("Size after clear: " + list.size());
     }
 }
+

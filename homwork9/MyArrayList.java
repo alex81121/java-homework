@@ -1,6 +1,6 @@
 package homwork9;
 
-public class MyArrayList {
+public class MyArrayList<E> {
 
     private Object[] data;
     private int size;
@@ -11,7 +11,7 @@ public class MyArrayList {
     }
 
     // Додає елемент в кінець
-    public void add(Object value) {
+    public void add(E value) {
         if (size == data.length) {
             Object[] newData = new Object[data.length * 2];
 
@@ -55,12 +55,13 @@ public class MyArrayList {
     }
 
     // Повертає елемент за індексом
-    public Object get(int index) {
+    @SuppressWarnings("unchecked")
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Невірний індекс");
         }
 
-        return data[index];
+        return (E) data[index];
     }
 }
 

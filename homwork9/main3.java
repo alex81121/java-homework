@@ -1,9 +1,10 @@
 package homwork9;
+
 public class main3 {
 
     public static void main(String[] args) {
 
-        MyQueue queue = new MyQueue();
+        MyQueue<String> queue = new MyQueue<>();
 
         queue.add("First");
         queue.add("Second");

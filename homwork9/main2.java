@@ -1,14 +1,15 @@
 package homwork9;
+
 public class main2 {
 
     public static void main(String[] args) {
 
-        MyLinkedList list = new MyLinkedList();
+        MyLinkedList<String> list = new MyLinkedList<>();
 
         list.add("Hello");
         list.add("World");
-        list.add(123);
         list.add("Test");
+        list.add("Java");
 
         System.out.println(list.get(0));
         System.out.println(list.get(1));
@@ -31,4 +32,5 @@ public class main2 {
         System.out.println("Size after clear: " + list.size());
     }
 }
+
 

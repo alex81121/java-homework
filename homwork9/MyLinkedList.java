@@ -1,24 +1,25 @@
 package homwork9;
-public class MyLinkedList {
 
-    private Node head;
-    private Node tail;
+public class MyLinkedList<E> {
+
+    private Node<E> head;
+    private Node<E> tail;
     private int size;
 
     // Node - елемент двозв'язного списку
-    private static class Node {
-        Object value;
-        Node previous;
-        Node next;
+    private static class Node<E> {
+        E value;
+        Node<E> previous;
+        Node<E> next;
 
-        Node(Object value) {
+        Node(E value) {
             this.value = value;
         }
     }
 
     // Додає елемент в кінець
-    public void add(Object value) {
-        Node newNode = new Node(value);
+    public void add(E value) {
+        Node<E> newNode = new Node<>(value);
 
         if (head == null) {
             head = newNode;
@@ -34,11 +35,7 @@ public class MyLinkedList {
 
     // Видаляє елемент за індексом
     public void remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Невірний індекс");
-        }
-
-        Node current = getNode(index);
+        Node<E> current = getNode(index);
 
         if (current.previous != null) {
             current.previous.next = current.next;
@@ -68,17 +65,17 @@ public class MyLinkedList {
     }
 
     // Повертає елемент за індексом
-    public Object get(int index) {
+    public E get(int index) {
         return getNode(index).value;
     }
 
     // Знаходить Node за індексом
-    private Node getNode(int index) {
+    private Node<E> getNode(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Невірний індекс");
         }
 
-        Node current;
+        Node<E> current;
 
         // Якщо індекс ближче до початку
         if (index < size / 2) {
@@ -87,7 +84,7 @@ public class MyLinkedList {
             for (int i = 0; i < index; i++) {
                 current = current.next;
             }
-        } 
+        }
         // Якщо індекс ближче до кінця
         else {
             current = tail;

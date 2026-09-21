@@ -1,34 +1,38 @@
 package homwork9;
-public class MyHashMap {
 
-    private Node[] table;
+public class MyHashMap<K, V> {
+
+    private Node<K, V>[] table;
     private int size;
 
-    private static class Node {
-        Object key;
-        Object value;
-        Node next;
+    // Node - елемент однозв'язного списку
+    private static class Node<K, V> {
+        K key;
+        V value;
+        Node<K, V> next;
 
-        Node(Object key, Object value) {
+        Node(K key, V value) {
             this.key = key;
             this.value = value;
         }
     }
 
+    @SuppressWarnings("unchecked")
     public MyHashMap() {
-        table = new Node[10];
+        table = (Node<K, V>[]) new Node[10];
         size = 0;
     }
 
     // Додає пару ключ + значення
-    public void put(Object key, Object value) {
+    public void put(K key, V value) {
 
         int index = getIndex(key);
 
-        Node current = table[index];
+        Node<K, V> current = table[index];
 
         // Перевіряємо, чи існує такий ключ
         while (current != null) {
+
             if (keysEqual(current.key, key)) {
                 current.value = value;
                 return;
@@ -38,7 +42,7 @@ public class MyHashMap {
         }
 
         // Додаємо нову Node на початок списку
-        Node newNode = new Node(key, value);
+        Node<K, V> newNode = new Node<>(key, value);
         newNode.next = table[index];
         table[index] = newNode;
 
@@ -46,12 +50,12 @@ public class MyHashMap {
     }
 
     // Видаляє пару по ключу
-    public void remove(Object key) {
+    public void remove(K key) {
 
         int index = getIndex(key);
 
-        Node current = table[index];
-        Node previous = null;
+        Node<K, V> current = table[index];
+        Node<K, V> previous = null;
 
         while (current != null) {
 
@@ -73,8 +77,9 @@ public class MyHashMap {
     }
 
     // Очищає колекцію
+    @SuppressWarnings("unchecked")
     public void clear() {
-        table = new Node[10];
+        table = (Node<K, V>[]) new Node[10];
         size = 0;
     }
 
@@ -84,11 +89,11 @@ public class MyHashMap {
     }
 
     // Повертає значення по ключу
-    public Object get(Object key) {
+    public V get(K key) {
 
         int index = getIndex(key);
 
-        Node current = table[index];
+        Node<K, V> current = table[index];
 
         while (current != null) {
 
@@ -103,17 +108,17 @@ public class MyHashMap {
     }
 
     // Визначає індекс для ключа
-    private int getIndex(Object key) {
+    private int getIndex(K key) {
 
         if (key == null) {
             return 0;
         }
 
-        return Math.abs(key.hashCode()) % table.length;
+        return Math.floorMod(key.hashCode(), table.length);
     }
 
     // Порівнює ключі
-    private boolean keysEqual(Object key1, Object key2) {
+    private boolean keysEqual(K key1, K key2) {
 
         if (key1 == key2) {
             return true;

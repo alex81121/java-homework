@@ -1,21 +1,23 @@
 package homwork9;
-public class MyStack {
 
-    private Node head;
+public class MyStack<E> {
+
+    private Node<E> head;
     private int size;
 
-    private static class Node {
-        Object value;
-        Node next;
+    // Node - елемент стеку
+    private static class Node<E> {
+        E value;
+        Node<E> next;
 
-        Node(Object value) {
+        Node(E value) {
             this.value = value;
         }
     }
 
-    // Додає елемент в кінець стеку
-    public void push(Object value) {
-        Node newNode = new Node(value);
+    // Додає елемент на вершину стеку
+    public void push(E value) {
+        Node<E> newNode = new Node<>(value);
 
         if (head == null) {
             head = newNode;
@@ -33,13 +35,14 @@ public class MyStack {
             throw new IndexOutOfBoundsException("Невірний індекс");
         }
 
+        // Видалення першого елемента
         if (index == 0) {
             head = head.next;
             size--;
             return;
         }
 
-        Node current = head;
+        Node<E> current = head;
 
         for (int i = 0; i < index - 1; i++) {
             current = current.next;
@@ -61,7 +64,7 @@ public class MyStack {
     }
 
     // Повертає перший елемент, але не видаляє його
-    public Object peek() {
+    public E peek() {
         if (head == null) {
             return null;
         }
@@ -70,12 +73,12 @@ public class MyStack {
     }
 
     // Повертає перший елемент і видаляє його
-    public Object pop() {
+    public E pop() {
         if (head == null) {
             return null;
         }
 
-        Object value = head.value;
+        E value = head.value;
 
         head = head.next;
         size--;
@@ -83,4 +86,6 @@ public class MyStack {
         return value;
     }
 }
+
+
 

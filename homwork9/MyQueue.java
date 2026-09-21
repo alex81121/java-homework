@@ -1,22 +1,24 @@
 package homwork9;
-public class MyQueue {
 
-    private Node head;
-    private Node tail;
+public class MyQueue<E> {
+
+    private Node<E> head;
+    private Node<E> tail;
     private int size;
 
-    private static class Node {
-        Object value;
-        Node next;
+    // Node - елемент черги
+    private static class Node<E> {
+        E value;
+        Node<E> next;
 
-        Node(Object value) {
+        Node(E value) {
             this.value = value;
         }
     }
 
     // Додає елемент в кінець черги
-    public void add(Object value) {
-        Node newNode = new Node(value);
+    public void add(E value) {
+        Node<E> newNode = new Node<>(value);
 
         if (head == null) {
             head = newNode;
@@ -42,7 +44,7 @@ public class MyQueue {
     }
 
     // Повертає перший елемент, але не видаляє його
-    public Object peek() {
+    public E peek() {
         if (head == null) {
             return null;
         }
@@ -51,12 +53,12 @@ public class MyQueue {
     }
 
     // Повертає перший елемент і видаляє його
-    public Object poll() {
+    public E poll() {
         if (head == null) {
             return null;
         }
 
-        Object value = head.value;
+        E value = head.value;
 
         head = head.next;
         size--;
@@ -68,4 +70,5 @@ public class MyQueue {
         return value;
     }
 }
+
 

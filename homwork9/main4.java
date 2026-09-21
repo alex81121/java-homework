@@ -1,9 +1,10 @@
 package homwork9;
+
 public class main4 {
 
     public static void main(String[] args) {
 
-        MyStack stack = new MyStack();
+        MyStack<String> stack = new MyStack<>();
 
         stack.push("First");
         stack.push("Second");
@@ -29,4 +30,5 @@ public class main4 {
         System.out.println("Size after clear: " + stack.size());
     }
 }
+
 
